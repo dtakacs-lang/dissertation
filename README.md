@@ -12,7 +12,7 @@ Here is an overview of what can be found in this repo:
     * [Target items](https://github.com/dtakacs-lang/dissertation/blob/6d341721dc6cd27c5182ee4f6fcfaf09e190650e/exp_test_1.xlsx)
   * Scripts for running the experiment:
     * [offline version created in Python using PsychoPy Builder](https://github.com/dtakacs-lang/dissertation/blob/cd810bee4009b3e094768865049e028e6acc3de7/PsychoPy%20script.psyexp)
-    * final version in Java
+    * [final version in Java](https://github.com/dtakacs-lang/dissertation/blob/cd810bee4009b3e094768865049e028e6acc3de7/Final%20Java.js)
   * Script for evaluating the experiment (in R)
  
 * Dictionary
