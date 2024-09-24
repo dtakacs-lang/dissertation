@@ -7,9 +7,9 @@ Here is an overview of what can be found in this repo:
 * Experiment
   * Pictures used in the experiment
   * List of experimental items
-    * Introductory items
-    * Filler items
-    * Target items
+    * [Introductory items](https://github.com/dtakacs-lang/dissertation/blob/6d341721dc6cd27c5182ee4f6fcfaf09e190650e/trial_data.xlsx)
+    * [Filler items](https://github.com/dtakacs-lang/dissertation/blob/6d341721dc6cd27c5182ee4f6fcfaf09e190650e/Fillers.xlsx)
+    * [Target items](https://github.com/dtakacs-lang/dissertation/blob/6d341721dc6cd27c5182ee4f6fcfaf09e190650e/exp_test_1.xlsx)
   * Scripts for running the experiment:
     * initial version created in Python in PsychoPy Builder
     * final version in Java
