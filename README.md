@@ -4,8 +4,9 @@ This repo is for the work on vowel-zero alternations in Hungarian that I have do
 
 Here is an overview of what can be found in this repo:
 
-* Experimental materials
+* Experiment
   * Pictures used in the experiment
+  * List of experimental items
   * Scripts for running the experiment:
     * initial version created in Python in PsychoPy Builder
     * final version in Java
