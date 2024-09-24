@@ -7,6 +7,9 @@ Here is an overview of what can be found in this repo:
 * Experiment
   * Pictures used in the experiment
   * List of experimental items
+   * Introductory items
+   * Filler items
+   * Target items
   * Scripts for running the experiment:
     * initial version created in Python in PsychoPy Builder
     * final version in Java
