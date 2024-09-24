@@ -17,7 +17,7 @@ function getRandomInt(max) {
 
 // store info about the experiment session:
 let expName = 'upload';  // from the Builder filename that created this script
-let expInfo = {'Hány éves?*': '', 'Hol nőtt fel?*': ''};
+let expInfo = {'Hány éves?*': '', 'Hol nőtt fel?*': ''}; // initial questions to each participants before starting the experiment
 
 // Start code blocks for 'Before Experiment'
 // init psychoJS:
@@ -278,7 +278,7 @@ async function experimentInit() {
   consent = new visual.TextStim({
     win: psychoJS.window,
     name: 'consent',
-    text: 'Beleegyezési nyilatkozat:\n\nA kérdőív kitöltésével hozzájárulását fejezi ki egy a Massachusetts Institute of Technology Nyelvészet és Filozófia tanszékén folytatott, Athulya Aravind által vezetett, kutatásban való részvételéhez. Ha kérdése van a kutatással kapcsolatban, azokat a dorakata@mit.edu címre küldheti. A részvétele a kutatásban teljes mértékben önkéntes alapon történik. Ha valamelyik kérdésre nem kíván válaszolni, azt nyugodtan kihagyhatja. A kérdőív kitöltését bármikor bármilyen negatív következmény nélkül megszakíthatja. Az anonimitása biztosított; a kutatókhoz, akik az Ön kutatásban való részévételét kérvényezték, Önről semmilyen személyes információ nem jut el.',
+    text: 'Beleegyezési nyilatkozat:\n\nA kérdőív kitöltésével hozzájárulását fejezi ki egy a Massachusetts Institute of Technology Nyelvészet és Filozófia tanszékén folytatott, Athulya Aravind által vezetett, kutatásban való részvételéhez. Ha kérdése van a kutatással kapcsolatban, azokat a dorakata@mit.edu címre küldheti. A részvétele a kutatásban teljes mértékben önkéntes alapon történik. Ha valamelyik kérdésre nem kíván válaszolni, azt nyugodtan kihagyhatja. A kérdőív kitöltését bármikor bármilyen negatív következmény nélkül megszakíthatja. Az anonimitása biztosított; a kutatókhoz, akik az Ön kutatásban való részévételét kérvényezték, Önről semmilyen személyes információ nem jut el.', // change this for a different consent form
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.08], height: 0.037,  wrapWidth: undefined, ori: 0.0,
@@ -289,14 +289,15 @@ async function experimentInit() {
   consenting = new visual.TextStim({
     win: psychoJS.window,
     name: 'consenting',
-    text: 'Elolvastam és tudomásul vettem a beleegyezési nyilatkozatot. Elmúltam 18 éves és az anyanyelvem magyar.',
+    text: 'Elolvastam és tudomásul vettem a beleegyezési nyilatkozatot. Elmúltam 18 éves és az anyanyelvem magyar.', //change this for different agreement statement
     font: 'Open Sans',
     units: undefined, 
     pos: [0, (- 0.3)], height: 0.035,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -2.0 
   });
-  
+
+  //create box to click on to agree to concept form
   box = new visual.Rect ({
     win: psychoJS.window, name: 'box', 
     width: [0.03, 0.03][0], height: [0.03, 0.03][1],
@@ -304,36 +305,40 @@ async function experimentInit() {
     lineWidth: 3.0, lineColor: new util.Color('white'),
     fillColor: new util.Color('grey'),
     opacity: undefined, depth: -3, interpolate: true,
-  });
-  
+  }); 
+
+  //enabling clicking on the box to express agreement
   click_consent = new core.Mouse({
     win: psychoJS.window,
   });
   click_consent.mouseClock = new util.Clock();
+  
   // Initialize components for Routine "instructions"
   instructionsClock = new util.Clock();
   instruction = new visual.TextStim({
     win: psychoJS.window,
     name: 'instruction',
-    text: 'A kérdőívben feltett kérdésekre nincsen helyes válasz. Minden kérdésnél kérjük azt a választ jelölje meg amelyik Ön szerint jobban, természetesebben hangzik. Kérjük, hogy a kérdőívben szereplő minden mondatot és válaszlehetőséget figyelmesen olvasson el. \n\nA kérdőív kitöltéséhez szükséges átlagos idő: 20 perc. \n\nKözreműködését előre is köszönöm!',
+    text: 'A kérdőívben feltett kérdésekre nincsen helyes válasz. Minden kérdésnél kérjük azt a választ jelölje meg amelyik Ön szerint jobban, természetesebben hangzik. Kérjük, hogy a kérdőívben szereplő minden mondatot és válaszlehetőséget figyelmesen olvasson el. \n\nA kérdőív kitöltéséhez szükséges átlagos idő: 20 perc. \n\nKözreműködését előre is köszönöm!', //change this for different instructions
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.1], height: 0.037,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -1.0 
   });
-  
+
+  // text explaining how to continue
   next_instr = new visual.TextStim({
     win: psychoJS.window,
     name: 'next_instr',
-    text: "A továbblépéshez nyomja le a 'space' billentyűt!",
+    text: "A továbblépéshez nyomja le a 'space' billentyűt!", // change this for differnet continuation message
     font: 'Open Sans',
     units: undefined, 
     pos: [0, (- 0.3)], height: 0.032,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color([0.8824, 1.0, 1.0]),  opacity: undefined,
     depth: -2.0 
   });
-  
+
+  //pushing key let's participant continue
   key_resp_instr = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
   // Initialize components for Routine "IntroEx"
@@ -341,14 +346,15 @@ async function experimentInit() {
   IntroExSentence1 = new visual.TextStim({
     win: psychoJS.window,
     name: 'IntroExSentence1',
-    text: '',
+    text: '', //left empty here as it is later inserted from the introductory items file
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.25], height: 0.045,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -1.0 
   });
-  
+
+  //insert first picture: the singular one
   IntroExImage1 = new visual.ImageStim({
     win : psychoJS.window,
     name : 'IntroExImage1', units : undefined, 
@@ -358,30 +364,35 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -2.0 
   });
+
+  //how to continue 
   Intro_continue = new visual.TextStim({
     win: psychoJS.window,
     name: 'Intro_continue',
-    text: "A továbblépéshez nyomja le a 'space' billentyűt!",
+    text: "A továbblépéshez nyomja le a 'space' billentyűt!", //change this for different text explaining how to continue
     font: 'Open Sans',
     units: undefined, 
     pos: [0, (- 0.4)], height: 0.032,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color([0.8824, 1.0, 1.0]),  opacity: undefined,
     depth: -3.0 
   });
-  
+
+  //pressing a key let's participant proceed
   key_resp_intro = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
+
+  //sentence on the second slide of an item
   IntroExSentence2 = new visual.TextStim({
     win: psychoJS.window,
     name: 'IntroExSentence2',
-    text: 'Ezek _______',
+    text: 'Ezek _______', //here the text does not change with each item, so it is set for all of them
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.25], height: 0.045,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -5.0 
   });
-  
+
+  //insert second picture: the plural one
   IntroExImage2 = new visual.ImageStim({
     win : psychoJS.window,
     name : 'IntroExImage2', units : undefined, 
@@ -391,6 +402,8 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -6.0 
   });
+
+  //create a rectangle for a button
   IntroButton1 = new visual.Rect ({
     win: psychoJS.window, name: 'IntroButton1', 
     width: [0.35, 0.1][0], height: [0.35, 0.1][1],
@@ -399,18 +412,20 @@ async function experimentInit() {
     fillColor: new util.Color([0.7412, 0.4431, 0.0588]),
     opacity: undefined, depth: -7, interpolate: true,
   });
-  
+
+  //text for the first button
   IntroButton1Text = new visual.TextStim({
     win: psychoJS.window,
     name: 'IntroButton1Text',
-    text: '',
+    text: '', //changes with each item so not set here
     font: 'Open Sans',
     units: undefined, 
     pos: [(- 0.33), (- 0.345)], height: 0.04,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -8.0 
   });
-  
+
+  //turning the rectangle into a button
   IntroButton1Mouse = new core.Mouse({
     win: psychoJS.window,
   });
