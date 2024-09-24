@@ -73,7 +73,7 @@ psychoJS.start({
   resources: [
     {'name': '12.jpg', 'path': '12.jpg'},
     {'name': '5_pl.png', 'path': '5_pl.png'},
-    {'name': 'exp_test_1.xlsx', 'path': 'exp_test_1.xlsx'},
+    {'name': 'exp_test_1.xlsx', 'path': 'exp_test_1.xlsx'}, //file for target items
     {'name': '12_pl.png', 'path': '12_pl.png'},
     {'name': '26_pl.png', 'path': '26_pl.png'},
     {'name': '10_pl.png', 'path': '10_pl.png'},
@@ -133,7 +133,7 @@ psychoJS.start({
     {'name': '46_1.png', 'path': '46_1.png'},
     {'name': '20_pl.png', 'path': '20_pl.png'},
     {'name': '3_pl.png', 'path': '3_pl.png'},
-    {'name': 'Fillers.xlsx', 'path': 'Fillers.xlsx'},
+    {'name': 'Fillers.xlsx', 'path': 'Fillers.xlsx'}, //file for filler items
     {'name': '31_pl.png', 'path': '31_pl.png'},
     {'name': '47_1.png', 'path': '47_1.png'},
     {'name': '50_1.png', 'path': '50_1.png'},
@@ -158,7 +158,7 @@ psychoJS.start({
     {'name': '27.jpg', 'path': '27.jpg'},
     {'name': '33_pl.png', 'path': '33_pl.png'},
     {'name': '45_pl.png', 'path': '45_pl.png'},
-    {'name': 'trial_data.xlsx', 'path': 'trial_data.xlsx'},
+    {'name': 'trial_data.xlsx', 'path': 'trial_data.xlsx'}, //file for introductory items
     {'name': '44_1.png', 'path': '44_1.png'},
     {'name': '18.jpg', 'path': '18.jpg'},
     {'name': '20.jpg', 'path': '20.jpg'},
@@ -430,6 +430,8 @@ async function experimentInit() {
     win: psychoJS.window,
   });
   IntroButton1Mouse.mouseClock = new util.Clock();
+
+  //another rectangle for a second button
   IntroButton2 = new visual.Rect ({
     win: psychoJS.window, name: 'IntroButton2', 
     width: [0.35, 0.1][0], height: [0.35, 0.1][1],
@@ -438,35 +440,40 @@ async function experimentInit() {
     fillColor: new util.Color([0.7412, 0.4431, 0.0588]),
     opacity: undefined, depth: -10, interpolate: true,
   });
-  
+
+  //text for the second button
   IntroButton2Text = new visual.TextStim({
     win: psychoJS.window,
     name: 'IntroButton2Text',
-    text: '',
+    text: '',//it is different for each item so it is not defined here
     font: 'Open Sans',
     units: undefined, 
     pos: [0.33, (- 0.345)], height: 0.04,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -11.0 
   });
-  
+
+  //turn the second rectangle into a button
   IntroButton2Mouse = new core.Mouse({
     win: psychoJS.window,
   });
   IntroButton2Mouse.mouseClock = new util.Clock();
   // Initialize components for Routine "Targets"
   TargetsClock = new util.Clock();
+
+  //display the first sentence
   TargetSentence1 = new visual.TextStim({
     win: psychoJS.window,
     name: 'TargetSentence1',
-    text: '',
+    text: '', //different for every item, pulled from the file
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.25], height: 0.045,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -1.0 
   });
-  
+
+  //first image: the singular one
   TargetsImage1 = new visual.ImageStim({
     win : psychoJS.window,
     name : 'TargetsImage1', units : undefined, 
@@ -476,30 +483,35 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -2.0 
   });
+
+  //text explaining how to continue
   target_continue = new visual.TextStim({
     win: psychoJS.window,
     name: 'target_continue',
-    text: "A továbblépéshez nyomja le a 'space' billentyűt!",
+    text: "A továbblépéshez nyomja le a 'space' billentyűt!", //change this for different text about how to proceed
     font: 'Open Sans',
     units: undefined, 
     pos: [0, (- 0.4)], height: 0.032,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color([0.8824, 1.0, 1.0]),  opacity: undefined,
     depth: -3.0 
   });
-  
+
+  //pressing a key let's participant proceed
   key_resp_target = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
+
+  //display second sentence: the plural one
   TargetsSentence2 = new visual.TextStim({
     win: psychoJS.window,
     name: 'TargetsSentence2',
-    text: 'Ezek _______',
+    text: 'Ezek _______',//It is always the same, so it is given here
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.25], height: 0.045,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -5.0 
   });
-  
+
+  //include the second picture: the plural one
   TargetsImage2 = new visual.ImageStim({
     win : psychoJS.window,
     name : 'TargetsImage2', units : undefined, 
@@ -509,6 +521,8 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -6.0 
   });
+
+  //create a rectangle for the first button
   TargetButton1 = new visual.Rect ({
     win: psychoJS.window, name: 'TargetButton1', 
     width: [0.35, 0.1][0], height: [0.35, 0.1][1],
@@ -517,22 +531,26 @@ async function experimentInit() {
     fillColor: new util.Color([0.7412, 0.4431, 0.0588]),
     opacity: undefined, depth: -7, interpolate: true,
   });
-  
+
+  //text field in the first button
   TargetButton1Text = new visual.TextStim({
     win: psychoJS.window,
     name: 'TargetButton1Text',
-    text: '',
+    text: '', //changes for every item, text is pulled from the relevant file
     font: 'Open Sans',
     units: undefined, 
     pos: [(- 0.33), (- 0.345)], height: 0.04,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -8.0 
   });
-  
+
+  //turn rectangle into a button
   TargetButton1Mouse = new core.Mouse({
     win: psychoJS.window,
   });
   TargetButton1Mouse.mouseClock = new util.Clock();
+
+  //create a rectangle for the second button
   TargetButton2 = new visual.Rect ({
     win: psychoJS.window, name: 'TargetButton2', 
     width: [0.35, 0.1][0], height: [0.35, 0.1][1],
@@ -541,35 +559,40 @@ async function experimentInit() {
     fillColor: new util.Color([0.7412, 0.4431, 0.0588]),
     opacity: undefined, depth: -10, interpolate: true,
   });
-  
+
+  //text for the target button
   TargetButton2Text = new visual.TextStim({
     win: psychoJS.window,
     name: 'TargetButton2Text',
-    text: '',
+    text: '', //pulled from the data, different for each item
     font: 'Open Sans',
     units: undefined, 
     pos: [0.33, (- 0.345)], height: 0.04,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -11.0 
   });
-  
+
+  //turning the second rectangle into a button
   TargetButton2Mouse = new core.Mouse({
     win: psychoJS.window,
   });
   TargetButton2Mouse.mouseClock = new util.Clock();
+  
   // Initialize components for Routine "Fillers"
   FillersClock = new util.Clock();
+  //display for sentence
   FillerExSentence1 = new visual.TextStim({
     win: psychoJS.window,
     name: 'FillerExSentence1',
-    text: '',
+    text: '', //changes for every filler, relevant text is pulled from the filler file
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.25], height: 0.045,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -1.0 
   });
-  
+
+  //display first image: the singular one
   FillerImage1 = new visual.ImageStim({
     win : psychoJS.window,
     name : 'FillerImage1', units : undefined, 
@@ -579,30 +602,35 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -2.0 
   });
+
+  //text explaining how to proceed
   Filler_continue = new visual.TextStim({
     win: psychoJS.window,
     name: 'Filler_continue',
-    text: "A továbblépéshez nyomja le a 'space' billentyűt!",
+    text: "A továbblépéshez nyomja le a 'space' billentyűt!", // change this for different message about how to proceed
     font: 'Open Sans',
     units: undefined, 
     pos: [0, (- 0.4)], height: 0.032,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color([0.8824, 1.0, 1.0]),  opacity: undefined,
     depth: -3.0 
   });
-  
+
+  //pressing a key let's participant proceed
   key_resp_filler = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
+
+  //display second sentence for a filler: the plural one
   FillerExSentence2 = new visual.TextStim({
     win: psychoJS.window,
     name: 'FillerExSentence2',
-    text: 'Ezek _______',
+    text: 'Ezek _______', //always the same
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0.25], height: 0.045,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -5.0 
   });
-  
+
+  //display second image: the plural one
   FillerExImage2 = new visual.ImageStim({
     win : psychoJS.window,
     name : 'FillerExImage2', units : undefined, 
@@ -612,6 +640,8 @@ async function experimentInit() {
     flipHoriz : false, flipVert : false,
     texRes : 128.0, interpolate : true, depth : -6.0 
   });
+
+  //create a rectangle for the first button
   FillerButton1 = new visual.Rect ({
     win: psychoJS.window, name: 'FillerButton1', 
     width: [0.35, 0.1][0], height: [0.35, 0.1][1],
@@ -620,22 +650,26 @@ async function experimentInit() {
     fillColor: new util.Color([0.7412, 0.4431, 0.0588]),
     opacity: undefined, depth: -7, interpolate: true,
   });
-  
+
+  //text for the first button
   FillerButton1Text = new visual.TextStim({
     win: psychoJS.window,
     name: 'FillerButton1Text',
-    text: '',
+    text: '', //different for every item, pulled from the relevant file
     font: 'Open Sans',
     units: undefined, 
     pos: [(- 0.33), (- 0.345)], height: 0.04,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -8.0 
   });
-  
+
+  //turn rectangle into an actual button
   FillerButton1Mouse = new core.Mouse({
     win: psychoJS.window,
   });
   FillerButton1Mouse.mouseClock = new util.Clock();
+
+  //create another rectangle for the second button
   FillerButton2 = new visual.Rect ({
     win: psychoJS.window, name: 'FillerButton2', 
     width: [0.35, 0.1][0], height: [0.35, 0.1][1],
@@ -644,41 +678,46 @@ async function experimentInit() {
     fillColor: new util.Color([0.7412, 0.4431, 0.0588]),
     opacity: undefined, depth: -10, interpolate: true,
   });
-  
+
+  //text for the second button
   FillerButton2Text = new visual.TextStim({
     win: psychoJS.window,
     name: 'FillerButton2Text',
-    text: '',
+    text: '', //changes with every item, pulled from the relevant file
     font: 'Open Sans',
     units: undefined, 
     pos: [0.33, (- 0.345)], height: 0.04,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -11.0 
   });
-  
+
+  //turning the second rectangle into a button
   FillerButton2Mouse = new core.Mouse({
     win: psychoJS.window,
   });
   FillerButton2Mouse.mouseClock = new util.Clock();
+  
   // Initialize components for Routine "thanks"
   thanksClock = new util.Clock();
   thankyou = new visual.TextStim({
     win: psychoJS.window,
     name: 'thankyou',
-    text: 'Köszönöm a részvételét!',
+    text: 'Köszönöm a részvételét!',//change this for different thank you text
     font: 'Open Sans',
     units: undefined, 
     pos: [0, 0], height: 0.05,  wrapWidth: undefined, ori: 0.0,
     color: new util.Color('white'),  opacity: undefined,
     depth: -1.0 
   });
-  
+
+  //pressing a key let's participant end the experiment
   key_resp_thanks = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
-  
+
+  //text explaining how to end the experiment
   thankyou_continue = new visual.TextStim({
     win: psychoJS.window,
     name: 'thankyou_continue',
-    text: "A kérdőív befejezéséhez nyomja le a 'space' billentyűt!",
+    text: "A kérdőív befejezéséhez nyomja le a 'space' billentyűt!", //change this for different instructions on how to end the experiment
     font: 'Open Sans',
     units: undefined, 
     pos: [0, (- 0.38)], height: 0.035,  wrapWidth: undefined, ori: 0.0,
@@ -686,7 +725,7 @@ async function experimentInit() {
     depth: -3.0 
   });
   
-  // Create some handy timers
+  // Create some handy timers -- this is default from PsychoPy, I did not make any use of it, though
   globalClock = new util.Clock();  // to track the time since experiment started
   routineTimer = new util.CountdownTimer();  // to track time remaining of each (non-slip) routine
   
@@ -710,7 +749,7 @@ function consent_formRoutineBegin(snapshot) {
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
     // setup some python lists for storing info about the click_consent
-    // current position of the mouse:
+    // current position of the mouse: mouse position is not used here, the initialization comes from the default PsychoPy setup
     click_consent.x = [];
     click_consent.y = [];
     click_consent.leftButton = [];
@@ -757,7 +796,7 @@ function consent_formRoutineEachFrame() {
     
     // *consenting* updates
     if (t >= 0.5 && consenting.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
+      // keep track of start time/frame for later (not necessary for this experiment)
       consenting.tStart = t;  // (not accounting for frame time here)
       consenting.frameNStart = frameN;  // exact frame index
       
@@ -776,7 +815,7 @@ function consent_formRoutineEachFrame() {
 
     // *click_consent* updates
     if (t >= 0.5 && click_consent.status === PsychoJS.Status.NOT_STARTED) {
-      // keep track of start time/frame for later
+      // keep track of start time/frame for later (not necessary for this experiment)
       click_consent.tStart = t;  // (not accounting for frame time here)
       click_consent.frameNStart = frameN;  // exact frame index
       
@@ -811,7 +850,7 @@ function consent_formRoutineEachFrame() {
     }
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
-      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
+      return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false); //this was not personalized assuming the participant would continue
     }
     
     // check if the Routine should terminate
@@ -844,7 +883,7 @@ function consent_formRoutineEnd() {
         thisComponent.setAutoDraw(false);
       }
     }
-    // store data for psychoJS.experiment (ExperimentHandler)
+    // store data for psychoJS.experiment (ExperimentHandler) not technically necessary for this experiment
     if (click_consent.x) {  psychoJS.experiment.addData('click_consent.x', click_consent.x[0])};
     if (click_consent.y) {  psychoJS.experiment.addData('click_consent.y', click_consent.y[0])};
     if (click_consent.leftButton) {  psychoJS.experiment.addData('click_consent.leftButton', click_consent.leftButton[0])};
@@ -1063,7 +1102,7 @@ function trials_2LoopBegin(trials_2LoopScheduler, snapshot) {
       trials_2LoopScheduler.add(TargetsRoutineBegin(snapshot));
       trials_2LoopScheduler.add(TargetsRoutineEachFrame());
       trials_2LoopScheduler.add(TargetsRoutineEnd());
-      const trials_3LoopScheduler = new Scheduler(psychoJS);
+      const trials_3LoopScheduler = new Scheduler(psychoJS); //intervening filler items!
       trials_2LoopScheduler.add(trials_3LoopBegin(trials_3LoopScheduler, snapshot));
       trials_2LoopScheduler.add(trials_3LoopScheduler);
       trials_2LoopScheduler.add(trials_3LoopEnd);
@@ -1128,21 +1167,21 @@ function IntroExRoutineBegin(snapshot) {
     
     //------Prepare to start Routine 'IntroEx'-------
     t = 0;
-    IntroExClock.reset(); // clock
+    IntroExClock.reset(); // clock (not technically necessary)
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
-    rnnumTrial = getRandomInt(2);
-    psychoJS.experiment.addData('RandomNumberIntro', rnnumTrial);
+    rnnumTrial = getRandomInt(2); // this is used to randomize the buttons 
+    psychoJS.experiment.addData('RandomNumberIntro', rnnumTrial); // the randomization of the buttons is saved to be able to evaluate what the participant actually clicked on
     IntroExSentence1.setText(wholeSentenceTrial);
     IntroExImage1.setImage(Pic1Trial);
     key_resp_intro.keys = undefined;
     key_resp_intro.rt = undefined;
     _key_resp_intro_allKeys = [];
     IntroExImage2.setImage(Pic2Trial);
-    IntroButton1Text.setText(((rnnumTrial === 1) ? pl1Trial : pl2Trial));
+    IntroButton1Text.setText(((rnnumTrial === 1) ? pl1Trial : pl2Trial)); //here we use the random boolean generated to determine which button is which
     // setup some python lists for storing info about the IntroButton1Mouse
-    // current position of the mouse:
+    // current position of the mouse: (technically position of the mouse is not necessary, we only need left or right button)
     IntroButton1Mouse.x = [];
     IntroButton1Mouse.y = [];
     IntroButton1Mouse.leftButton = [];
@@ -1152,9 +1191,9 @@ function IntroExRoutineBegin(snapshot) {
     IntroButton1Mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
     IntroButton2Text.setText(pl2Trial);
-    IntroButton2Text.setText(((rnnumTrial === 1) ? pl2Trial : pl1Trial));
+    IntroButton2Text.setText(((rnnumTrial === 1) ? pl2Trial : pl1Trial)); //setting the text for the second button based on the random boolean generated above (I say boolean but it is a number 0 or 1)
     // setup some python lists for storing info about the IntroButton2Mouse
-    // current position of the mouse:
+    // current position of the mouse: (again this could be left out, only which button was clicked is what was taken into consideration in the evaluation in the end)
     IntroButton2Mouse.x = [];
     IntroButton2Mouse.y = [];
     IntroButton2Mouse.leftButton = [];
@@ -1250,7 +1289,7 @@ function IntroExRoutineEachFrame() {
   }
 
     if (key_resp_intro.status === PsychoJS.Status.STARTED) {
-      let theseKeys = key_resp_intro.getKeys({keyList: ['space'], waitRelease: false});
+      let theseKeys = key_resp_intro.getKeys({keyList: ['space'], waitRelease: false}); // change this to allow other key(s) to be used to proceed
       _key_resp_intro_allKeys = _key_resp_intro_allKeys.concat(theseKeys);
       if (_key_resp_intro_allKeys.length > 0) {
         key_resp_intro.keys = _key_resp_intro_allKeys[_key_resp_intro_allKeys.length - 1].name;  // just the last key pressed
@@ -1430,6 +1469,7 @@ function IntroExRoutineEnd() {
     
     key_resp_intro.stop();
     // store data for psychoJS.experiment (ExperimentHandler)
+    // left and right button are enough for this experiment
     if (IntroButton1Mouse.x) {  psychoJS.experiment.addData('IntroButton1Mouse.x', IntroButton1Mouse.x[0])};
     if (IntroButton1Mouse.y) {  psychoJS.experiment.addData('IntroButton1Mouse.y', IntroButton1Mouse.y[0])};
     if (IntroButton1Mouse.leftButton) {  psychoJS.experiment.addData('IntroButton1Mouse.leftButton', IntroButton1Mouse.leftButton[0])};
@@ -1439,6 +1479,7 @@ function IntroExRoutineEnd() {
     if (IntroButton1Mouse.clicked_name) {  psychoJS.experiment.addData('IntroButton1Mouse.clicked_name', IntroButton1Mouse.clicked_name[0])};
     
     // store data for psychoJS.experiment (ExperimentHandler)
+    // left and right button are enough for this experiment
     if (IntroButton2Mouse.x) {  psychoJS.experiment.addData('IntroButton2Mouse.x', IntroButton2Mouse.x[0])};
     if (IntroButton2Mouse.y) {  psychoJS.experiment.addData('IntroButton2Mouse.y', IntroButton2Mouse.y[0])};
     if (IntroButton2Mouse.leftButton) {  psychoJS.experiment.addData('IntroButton2Mouse.leftButton', IntroButton2Mouse.leftButton[0])};
@@ -1457,8 +1498,8 @@ function IntroExRoutineEnd() {
 
 var _key_resp_target_allKeys;
 var TargetsComponents;
-RandomFiller = [0,1,2,3,4,5];
-ShuffledRandomFiller = shuffle(RandomFiller);
+RandomFiller = [0,1,2,3,4,5]; 
+ShuffledRandomFiller = shuffle(RandomFiller); //randomizing the fillers and ensuring that each of them only occur once
 function TargetsRoutineBegin(snapshot) {
   return async function () {
     TrialHandler.fromSnapshot(snapshot); // ensure that .thisN vals are up to date
@@ -1469,30 +1510,30 @@ function TargetsRoutineBegin(snapshot) {
     frameN = -1;
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
-    if (trials_2.thisN === 5) {
+    if (trials_2.thisN === 5) { //after 6 target items there is a filler
             wordFiller = ShuffledRandomFiller[0]
-        } else if (trials_2.thisN === 11) {
+        } else if (trials_2.thisN === 11) { // after another 6 target items there is a filler
                 wordFiller = ShuffledRandomFiller[1]
-            } else if (trials_2.thisN === 17) {
+            } else if (trials_2.thisN === 17) {  // after another 6 target items there is a filler
                     wordFiller = ShuffledRandomFiller[2]
-                } else if (trials_2.thisN === 23) {
+                } else if (trials_2.thisN === 23) {  // after another 6 target items there is a filler
                         wordFiller = ShuffledRandomFiller[3]
-                    } else if (trials_2.thisN === 29) {
+                    } else if (trials_2.thisN === 29) {  // after another 6 target items there is a filler
                             wordFiller = ShuffledRandomFiller[4]
-                        } else if (trials_2.thisN === 35) {
+                        } else if (trials_2.thisN === 35) { // after another 6 target items there is a filler
                                 wordFiller = ShuffledRandomFiller[5]
                             }
-    rnnumItem = getRandomInt(2);
-    psychoJS.experiment.addData('RandomNumberItem', rnnumItem);
+    rnnumItem = getRandomInt(2); // getting a random number to determine in what order the texts in the two buttons appear
+    psychoJS.experiment.addData('RandomNumberItem', rnnumItem); //save the random number to be able to determine which button participant clicked on
     TargetSentence1.setText(wholeSentence);
     TargetsImage1.setImage(Pic1);
     key_resp_target.keys = undefined;
     key_resp_target.rt = undefined;
     _key_resp_target_allKeys = [];
     TargetsImage2.setImage(Pic2);
-    TargetButton1Text.setText(((rnnumItem === 1) ? pl1 : pl2));
+    TargetButton1Text.setText(((rnnumItem === 1) ? pl1 : pl2)); //using the random number from above to determine button order
     // setup some python lists for storing info about the TargetButton1Mouse
-    // current position of the mouse:
+    // current position of the mouse: (not really necessary, just leftButton and rightButton)
     TargetButton1Mouse.x = [];
     TargetButton1Mouse.y = [];
     TargetButton1Mouse.leftButton = [];
@@ -1501,9 +1542,9 @@ function TargetsRoutineBegin(snapshot) {
     TargetButton1Mouse.time = [];
     TargetButton1Mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
-    TargetButton2Text.setText(((rnnumItem === 1) ? pl2 : pl1));
+    TargetButton2Text.setText(((rnnumItem === 1) ? pl2 : pl1)); //using the random number from above to determine the order of the two buttons
     // setup some python lists for storing info about the TargetButton2Mouse
-    // current position of the mouse:
+    // current position of the mouse: (info from leftButton and rightButton is sufficient for this experiment)
     TargetButton2Mouse.x = [];
     TargetButton2Mouse.y = [];
     TargetButton2Mouse.leftButton = [];
@@ -1787,7 +1828,7 @@ function TargetsRoutineEnd() {
     if (TargetButton1Mouse.time) {  psychoJS.experiment.addData('TargetButton1Mouse.time', TargetButton1Mouse.time[0])};
     if (TargetButton1Mouse.clicked_name) {  psychoJS.experiment.addData('TargetButton1Mouse.clicked_name', TargetButton1Mouse.clicked_name[0])};
     
-    // store data for psychoJS.experiment (ExperimentHandler)
+    // store data for psychoJS.experiment (ExperimentHandler), technically leftButton and rightButton are enough for this experiment
     if (TargetButton2Mouse.x) {  psychoJS.experiment.addData('TargetButton2Mouse.x', TargetButton2Mouse.x[0])};
     if (TargetButton2Mouse.y) {  psychoJS.experiment.addData('TargetButton2Mouse.y', TargetButton2Mouse.y[0])};
     if (TargetButton2Mouse.leftButton) {  psychoJS.experiment.addData('TargetButton2Mouse.leftButton', TargetButton2Mouse.leftButton[0])};
@@ -1817,18 +1858,18 @@ function FillersRoutineBegin(snapshot) {
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
     // Run 'Begin Routine' code from code
-    if (trials_2.thisN == 5 || trials_2.thisN == 11 || trials_2.thisN == 17 || trials_2.thisN == 23 || trials_2.thisN == 29 || trials_2.thisN == 35) {
+    if (trials_2.thisN == 5 || trials_2.thisN == 11 || trials_2.thisN == 17 || trials_2.thisN == 23 || trials_2.thisN == 29 || trials_2.thisN == 35) { // determining that after every 6 target items there is a filler item
         continueRoutine = true
-        } else {continueRoutine = false};
-    rnnumFiller = getRandomInt(2);
-    psychoJS.experiment.addData('RandomNumberFiller', rnnumFiller);
+        } else {continueRoutine = false}; 
+    rnnumFiller = getRandomInt(2); //get a random number that is either 0 or 1 to determine the order of the two buttons
+    psychoJS.experiment.addData('RandomNumberFiller', rnnumFiller); // save the random value to be able to interpret what text was on the button that was clicked by the participant
     FillerExSentence1.setText(wholeSentenceFiller);
     FillerImage1.setImage(Pic1Filler);
     key_resp_filler.keys = undefined;
     key_resp_filler.rt = undefined;
     _key_resp_filler_allKeys = [];
     FillerExImage2.setImage(Pic2Filler);
-    FillerButton1Text.setText(((rnnumFiller === 1) ? pl1Filler : pl2Filler));
+    FillerButton1Text.setText(((rnnumFiller === 1) ? pl1Filler : pl2Filler)); //use random number to determine which option is displayed on the first button
     // setup some python lists for storing info about the FillerButton1Mouse
     // current position of the mouse:
     FillerButton1Mouse.x = [];
@@ -1839,7 +1880,7 @@ function FillersRoutineBegin(snapshot) {
     FillerButton1Mouse.time = [];
     FillerButton1Mouse.clicked_name = [];
     gotValidClick = false; // until a click is received
-    FillerButton2Text.setText(((rnnumFiller === 1) ? pl2Filler : pl1Filler));
+    FillerButton2Text.setText(((rnnumFiller === 1) ? pl2Filler : pl1Filler)); //use random number to determine which response option is displayed on the second button
     // setup some python lists for storing info about the FillerButton2Mouse
     // current position of the mouse:
     FillerButton2Mouse.x = [];
@@ -2125,7 +2166,7 @@ function FillersRoutineEnd() {
     if (FillerButton1Mouse.time) {  psychoJS.experiment.addData('FillerButton1Mouse.time', FillerButton1Mouse.time[0])};
     if (FillerButton1Mouse.clicked_name) {  psychoJS.experiment.addData('FillerButton1Mouse.clicked_name', FillerButton1Mouse.clicked_name[0])};
     
-    // store data for psychoJS.experiment (ExperimentHandler)
+    // store data for psychoJS.experiment (ExperimentHandler) (again leftButton and rightButton would safice for this experiment)
     if (FillerButton2Mouse.x) {  psychoJS.experiment.addData('FillerButton2Mouse.x', FillerButton2Mouse.x[0])};
     if (FillerButton2Mouse.y) {  psychoJS.experiment.addData('FillerButton2Mouse.y', FillerButton2Mouse.y[0])};
     if (FillerButton2Mouse.leftButton) {  psychoJS.experiment.addData('FillerButton2Mouse.leftButton', FillerButton2Mouse.leftButton[0])};
